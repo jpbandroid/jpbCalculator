@@ -1,9 +1,12 @@
 package com.jpb.android.calculator
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -249,6 +252,11 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.main, menu)
+        return true
     }
 
     fun factorial(n: Int): Int {
