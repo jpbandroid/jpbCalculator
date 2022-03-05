@@ -6,10 +6,8 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.preference.Preference
         android:key="application_version"
-        android:title="App version:" />
-    <com.jpb.android.calculator.AboutChromePreferenceOSVersion
-        android:key="os_version"
-        android:title="Android version" />
+        android:title="App version"
+        android:summary="1.0"/>
     <androidx.preference.Preference
         android:key="legal_information"
         android:title="OSS Licences" />

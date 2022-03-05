@@ -1,13 +1,21 @@
 package com.jpb.android.calculator
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.widget.Button
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,6 +52,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var bequal: Button
     lateinit var bdot: Button
     lateinit var bdiv: Button
+    lateinit var root: RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +91,7 @@ class MainActivity : AppCompatActivity() {
         bequal = findViewById(R.id.bequal)
         bdot = findViewById(R.id.bdot)
         bdiv = findViewById(R.id.bdiv)
+        root = findViewById(R.id.root)
 
         // adding on click listener to our all buttons.
         b1.setOnClickListener {
@@ -258,6 +268,17 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.main, menu)
         return true
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.about -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     fun factorial(n: Int): Int {
         // this method is use to find factorial
@@ -374,9 +395,12 @@ class MainActivity : AppCompatActivity() {
                         else if (func == "ln") Math.log(x)
                         // f we get any error then
                         // we simply return the exception.
-                        else throw RuntimeException(
-                            "Unknown function: $func"
-                        )
+                        else
+                                    throw RuntimeException(
+                                        "Unknown function: $func"
+                                        )
+
+
                 } else {
                     // if the condition not satisfy then we are returning the exception
                     throw RuntimeException("Unexpected: " + ch.toChar())
